@@ -1,0 +1,102 @@
+<html>
+<head>
+
+<title>Pencitraan</title>
+		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="stylesheet" href="/css/hal2.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div id="header">
+		<div id="container"><div id="logo"></div></div>
+</div>
+
+<div id="movingtext">
+<p><marquee behavior="scroll" direction="left" class="walktext">  Friday, February 1, 2013. Rekomendasi sharing hari ini adalah:</marquee></p>
+</div>
+
+<div id="con">
+<img id="bg" src="/img/background.jpg" />
+
+<center>
+<div id="photos"></div>
+<div id="box">
+<h6 align="center">Hello <a href="#" id="namelink"><%= @username %></a>!</h6>
+
+<h1 align="center">Share Now, Bro.</h1>
+<div id="beritamu"><b>Berita-mu,</b> Sesuatu yang bikin hidup Wall-kamu.<br>
+             Berbagi keceriaan dengan temanmu</div>
+
+<div id="box4">
+<div id="box5">
+<form action="/site/profile" method="post" accept-charset="utf-8">
+<div id="newsico"></div><input type='url' name='url' id='share' placeholder="Paste the link of the news over here." autofocus="autofocus" onpaste="moveToComment()"/>
+<div id="commentico"></div><input type='text' name='comment' id='comment' placeholder="Your comment." />
+<input type="submit" class="styled-button-8" value="Share" />
+</form>
+</div>
+</div>					
+<br>
+<div id="proud" align="center">(Proud to be First Indonesian News Sharing Company)</div>
+</div>
+</center>
+
+<div id="box2">
+<center><div id="box3">
+<h3 align="left" id="publik">10 Topik Terkini<br>
+Paling sering dibicarakan <br>
+di Indonesia, saat ini.</h3>
+
+<h5 align="left" id="klik">
+<i>Klik Berita berdasar Hashtag</i>
+</h5>
+<hr style="border: 1px solid #d8d8d7; margin-left: 5px; margin-right: 5px; margin-top: -10px;" /> 
+
+<h6 align="left" id="rank">
+#1 &nbsp; <a href="#">*MenujuJabarSatu*</a><br>
+#2 &nbsp; <a href="#">*AhokMarah*</a><br>
+#3 &nbsp; <a href="#"> *BarcaMilan0-2*</a><br>
+#4 &nbsp;<a href="#"> *PenembakanPapua*</a><br>
+#5 &nbsp;<a href="#">  *AcengFikri*</a><br>
+#6 &nbsp;<a href="#">  *KuasaHukumRaffi*</a><br>
+#7 &nbsp;<a href="#"> *FotoMesraRaffiWanda*</a><br>
+#8 &nbsp;<a href="#">  *AherOptimis*</a><br>
+#9 &nbsp;<a href="#"> *AnasUrban*</a><br>
+#10 <a href="#">*JokowiGanjilGenap*</a><br>
+</h6>
+
+<h3 align="left" id="publik2">Publik Figur<br>
+Paling sering dibicarakan <br>
+di Indonesia,di minggu ini.</h3>
+
+<hr style="border: 1px solid #EBEBEB; margin-left: 5px; margin-right: 5px; margin-top: -10px;" /> 
+
+<h6 align="left" id="rank">
+#1 Raffi Ahmad <br>
+#2 Joko Widodo <br>
+#3 Aceng Fikri <br>
+#4 Anas Urbaningrum <br>
+#5 SBY <br>
+</h6>
+</div>
+</center>
+</div>
+
+</div>
+
+
+
+</body>
+
+
+<script type="text/javascript" charset="utf-8">
+    $("#comment").css("width") = 1px;
+    function moveToComment(){
+        setTimeout(function(){$("#comment").focus();}, 100);
+    }
+</script>
+
+
+</html>
+

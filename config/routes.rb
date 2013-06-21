@@ -2,6 +2,11 @@ Pencitraan::Application.routes.draw do
 
 
   get "site/index"
+  get "site/home"
+  post "site/home"
+
+  match "profile" => "site#profile"
+  match "profile" => "site#profile", :via => :post
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout

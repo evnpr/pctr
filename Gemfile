@@ -40,3 +40,6 @@ gem 'jquery-rails'
 
 
 gem "omniauth-twitter"
+
+gem "nokogiri"
+gem "httparty"
