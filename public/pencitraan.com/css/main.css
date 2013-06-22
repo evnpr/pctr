@@ -129,6 +129,13 @@ display: inline-block;
  margin-top: 60px;
  }
  
+ #connect a:hover
+ {
+ background-image: url("../img/connecthover.png");
+  width: 221px;
+ height: 45px;
+ }
+ 
  #proud
  {
 font-size: 12px;

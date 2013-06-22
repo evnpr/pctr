@@ -657,14 +657,13 @@ text-decoration: none;
 {
 width: 580px;
 height: 100%;
-display: table;
-position: absolute;
+position: relative;
 z-index: 10; 
 margin-left: 230px;
-margin-top: -285px;
+top: -290px;
 }
 
-#newsbox
+.newsbox
 {
 background: #ffffff;
 width: 580px;
@@ -672,6 +671,7 @@ height: 250px;
 z-index: 10; 
 float: left;
 margin-top: 10px;
+position: relative;
 }
 
 #arrow {
@@ -744,7 +744,7 @@ margin-top: 35px;
 	width: 98%;
 	height: 30px;
 	margin-left:3px;
-	top:15px;
+	top:5px;
 	position: absolute;
 }
 
@@ -753,7 +753,7 @@ margin-top: 35px;
 	width: 98%;
 	height: 205px;
 	left:3px;
-	top:-8px;
+	top:-18px;
 	position: absolute;
 	margin-top: 55px;
 }
