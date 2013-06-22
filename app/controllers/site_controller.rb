@@ -4,6 +4,7 @@ class SiteController < ApplicationController
   require "nokogiri"
 
   def index
+    redirect_to "/site/home" and return if cookies[:user_id]
   end
 
   def home
@@ -29,25 +30,57 @@ class SiteController < ApplicationController
         
         # nokogiri in action
         doc = Nokogiri::HTML(response)
+        #----- description ----
         @description = ""
         doc.xpath("//meta[@name='description']/@content").each do |attr|
             @description = attr.value
         end
-        @images = []
-        doc.xpath("//img/@src").each do |attr|
-            @images << attr.value if attr.value.include? ".jpg"
+        if @description == ""
+            doc.xpath("//meta[@name='description']/@content").each do |attr|
+                @description = ""
+                @description = attr.value
+            end
         end
+        if @description == ""
+            doc.xpath("//meta[@name='description']/@content").each do |attr|
+                @description = ""
+                @description = attr.value
+            end
+        end
+        if @description == ""
+            doc.xpath("//meta[@property='og:description']/@content").each do |attr|
+                @description = ""
+                @description = attr.value
+            end
+        end
+        #----- /description --------
+        #----- images --------
+        @images = []
         doc.xpath("//meta[@property='og:image']/@content").each do |attr|
-            if attr.value.include? ".jpg"
+            if attr.value.include? ".jp" or  attr.value.include? ".png"
                 @images = []
                 @images << attr.value 
             end
         end
+        doc.xpath("//img/@src").each do |attr|
+            @images << attr.value if attr.value.include? ".jpg"
+        end
         @image = @images.first
+        #----- /images --------
+        #
+        #----- title --------
         @title = doc.at_css("title").text
+        #----- /title --------
         # /nokogiri in action
-
-        @site = Site.create(:url => @url, :host => @host, :image_url => @image, :description => @description, :title => @title, :user_id => @current_user.id) if !Site.exists?(:user_id => @current_user.id, :url => @url)
+        #
+        
+        
+        if !Site.exists?(:user_id => @current_user.id, :url => @url)
+            @site = Site.create(:url => @url, :host => @host, :image_url => @image, :description => @description, :title => @title, :user_id => @current_user.id) 
+            Comment.create(:site_id => @site.id, :message => @comment, :user_id => @current_user.id)
+        else
+            redirect_to request.referer and return 
+        end
 
     else
         redirect_to "/profile" and return

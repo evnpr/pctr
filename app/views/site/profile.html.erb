@@ -44,7 +44,7 @@
 				</div>
 				<div id="sudah">sudah share berita</div>
 				<div id="newsicon"></div>
-				<div id="jumlah">500</div>
+				<div id="jumlah"><%= @current_user.sites.count %></div>
 				<div id="sudah2">sudah dicuplik</div>
 				<div id="cuplikicon"></div>
 				<div id="jumlah2">7</div>
@@ -61,7 +61,7 @@
 		<div>
 </div>
 
-<a href="#" id="link"><input type="button" class="styled-button-9" value="Share Lagi" /></a>
+<a href="/" id="link"><input type="button" class="styled-button-9" value="Share Lagi" /></a>
 
 <script type="text/javascript">
   		$(document).ready(function(){
@@ -159,9 +159,8 @@
 		</div>
 		
 		<div id="tag">
-    		<div id="nametag"><%= @current_user.name %></div>
     		<div id="shareberita">share berita dari</div>
-    		<div id="sumberberita"><i><%= @site.host %></i></div>
+    		<div id="sumberberita"><i onClick="window.location='<%= @site.url %>'" style="cursor:pointer"><%= @site.host %></i></div>
 		</div>
     	
     		<div id="news">
@@ -174,7 +173,7 @@
 						
     					<div id="descbox">
     								<div id="desc" align="left">
-                                                                    <%= @site.description %>
+                                                                    <%=  @site.description %>
     								</div>
     					</div>
     					
@@ -185,7 +184,7 @@
     					<hr style="border: 1px solid #d8d8d7; margin-top: 145px; position:relative;" /> 
     					<div id="commentico"></div>
     					<div id="commentbox">
-    								<i><div id="comment" align="left">"<%= @site.comments.last %>"</div></i>
+    								<i><div id="comment" align="left">"<%= @site.comments.last.message if @site.comments.last  %>"</div></i>
     					
     					</div>
     					<hr style="border: 1px solid #d8d8d7; margin-top: -2px; position:relative" /> 
