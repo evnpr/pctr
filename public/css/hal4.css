@@ -46,6 +46,7 @@ url('../font/PTSans.svg') format('svg');
   body
   { text-decoration: none; 
    border: 0 none;
+    background-image: url(../img/background.jpg) ;
     margin: 0;
     padding: 0;
     height: auto;
@@ -105,7 +106,6 @@ opacity: 0.6;
 
 #con
 {height: 1000px;
-background-image: url(../img/background.jpg) ;
 width: auto;
 max-height: none;
 z-index: -1;

@@ -6,7 +6,7 @@ Pencitraan::Application.routes.draw do
   post "site/home"
 
   match "profile" => "site#profile", :as => :profile
-  match "share" => "site#share", :via => :post, :as => :share
+  match "share" => "site#share", :via => [:get, :post], :as => :share
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout

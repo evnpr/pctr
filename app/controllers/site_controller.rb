@@ -47,10 +47,10 @@ class SiteController < ApplicationController
         @title = doc.at_css("title").text
         # /nokogiri in action
 
-        @site = Site.create(:url => @url, :host => @host, :image_url => @image, :description => @description, :title => @title, :user_id => @current_user.id)
+        @site = Site.create(:url => @url, :host => @host, :image_url => @image, :description => @description, :title => @title, :user_id => @current_user.id) if !Site.exists?(:user_id => @current_user.id, :url => @url)
 
     else
-
+        redirect_to "/profile" and return
     end
   end
 
@@ -63,6 +63,7 @@ class SiteController < ApplicationController
         i = Issue.create(:name => issue)
         Issuesite.create(:site_id => site_id, :issue_id => i.id)
     end
+    @sites = @current_user.sites.order("created_at DESC")
   end
 
 end
