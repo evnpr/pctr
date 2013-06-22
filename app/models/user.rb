@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
         user.provider = auth["provider"]
         user.uid = auth["uid"]
         user.name = auth["info"]["name"]
-        user.image_url = auth["info"]["image"]
+        image_url = auth["info"]["image"]
+        image_url.slice! "_normal"
+        user.image_url = image_url
       end
   end
   
