@@ -148,13 +148,13 @@
     	</div>
     </div>	
     			
- 
+ <div id="invisiblebox">
 
  <% @current_user.sites.each do |site| %>
  <% @site = site %>
         		
-<div id="invisiblebox">
-		<div id="newsbox">
+
+		<div class="newsbox">
 		<div id="arrow">
 		</div>
 		
@@ -162,7 +162,7 @@
     		<div id="nametag"><%= @current_user.name %></div>
     		<div id="shareberita">share berita dari</div>
     		<div id="sumberberita"><i><%= @site.host %></i></div>
-</div>
+		</div>
     	
     		<div id="news">
     					<div id="judulbox">
@@ -201,27 +201,19 @@
 
 		</div>
 		
-		<div id="newsbox">
-		<div id="arrow">
-		</div>
-		</div>
-		
-		<div id="newsbox">
-		<div id="arrow">
-		</div>
-		</div>
 		
 		
+
+		
+
+
+<% end %>
+
 		
 		<div id="loadbar">
 		<center><div class="ajax-loader"></div></center>
 		</div>
-		
-</div>
-
-<% end %>
-
-
+		</div>
 </div>
 </center>
 </div>
