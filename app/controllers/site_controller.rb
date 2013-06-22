@@ -36,10 +36,7 @@ class SiteController < ApplicationController
             @description = attr.value
         end
         if @description == ""
-            doc.xpath("//meta[@name='description']/@content").each do |attr|
-                @description = ""
-                @description = attr.value
-            end
+            @description = doc.xpath("//p").first.text
         end
         if @description == ""
             doc.xpath("//meta[@name='description']/@content").each do |attr|
@@ -93,7 +90,7 @@ class SiteController < ApplicationController
     if request.post?
         site_id = params[:id]
         issue = params[:issue]
-        i = Issue.create(:name => issue)
+        i = Issue.create(:name => issue, :user_id => @current_user.id)
         Issuesite.create(:site_id => site_id, :issue_id => i.id)
     end
     @sites = @current_user.sites.order("created_at DESC")
