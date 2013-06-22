@@ -55,8 +55,12 @@
 <div id="bg">
 <div id="box6">
 		<div id="box7">
-				<div id="photos">
-				</div>
+                                <div id="photos" style="
+                                    background: url('<%= @current_user.image_url %>');
+                                    background-size: 100px;
+                                "></div>
+
+
 				<div id="sudah">sudah share berita</div>
 				<div id="newsicon"></div> <div id="jumlah"><%= @current_user.sites.count %></div> <div id="sudah2">sudah dicuplik</div> <div id="cuplikicon"></div> <div id="jumlah2">7</div>
 				<div id="nimbrung"><i>Nimbrung!</i></div>

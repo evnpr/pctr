@@ -37,8 +37,10 @@
 <a href="#fancy" id="link" class="changes"><input type="button" class="styled-button-8" value="Change settings" /></a>
 <div id="box6">
 		<div id="box7">
-				<div id="photos">
-				</div>
+                                <div id="photos" style="
+                                    background: url('<%= @current_user.image_url %>');
+                                    background-size: 100px;
+                                "></div>
 				
 				<div id="name"> Evan Purnama
 				</div>
