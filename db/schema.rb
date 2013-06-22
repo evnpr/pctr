@@ -11,7 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621140307) do
+ActiveRecord::Schema.define(:version => 20130622034931) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "message"
+    t.integer  "site_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "issues", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "issuesites", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "issue_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image_url"
+    t.string   "host"
+    t.integer  "user_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

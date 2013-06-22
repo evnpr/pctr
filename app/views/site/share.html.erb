@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Pencitraan</title>
+  <meta name="description" content="" />
+  <meta name="author" content="IIM" />
+  <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+  
+  <!-- css path -->
+   <link rel="stylesheet" type="text/css" href="/css/hal3.css" media="screen"/>
+  <link rel="stylesheet" type="text/css" href="/javascript/fancyapps-fancyBox-v2.1.4-0-g4e31d61/fancyapps-fancyBox-0ffc358/source/jquery.fancybox.css"/>
+  <link rel="shortcut icon" href="/img/favicon.ico" />
+  <!-- css path -->
+  
+  <!-- jquery path -->
+  <script type="text/javascript" src="/javascript/fancyapps-fancyBox-v2.1.4-0-g4e31d61/fancyapps-fancyBox-0ffc358/lib/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="/javascript/fancyapps-fancyBox-v2.1.4-0-g4e31d61/fancyapps-fancyBox-0ffc358/source/jquery.fancybox.js"></script>
+  <script type="text/javascript" src="/javascript/fancyapps-fancyBox-v2.1.4-0-g4e31d61/fancyapps-fancyBox-0ffc358/source/helpers/jquery.fancybox-media.js"></script>
+  <!-- jquery path -->
+  
+  
+  <script type="text/javascript">
+  		$(document).ready(function(){
+  			$('#prof').click(function(){
+  				$.fancybox.open({
+  				
+  				href : '#fancy',
+  				
+  				
+  				});
+  			});
+  		});
+  </script>
+  
+</head>
+
+<body>
+    <div id="header">
+		<div id="container"><div id="logo"></div></div>
+</div>
+
+<div id="container2"><div id="movingtext">
+<p><marquee behavior="scroll" direction="left" class="walktext"> Friday, February 1, 2013. Rekomendasi sharing hari ini adalah:</marquee></p>
+</div></div>
+
+<div id="con">
+<center>
+<div id="bg">
+<div id="box6">
+		<div id="box7">
+				<div id="photos">
+				</div>
+				<div id="name"> Evan Purnama
+				</div>
+				<div id="sudah">sudah share berita</div>
+				<div id="newsicon"></div> <div id="jumlah">500</div> <div id="sudah2">sudah dicuplik</div> <div id="cuplikicon"></div> <div id="jumlah2">7</div>
+				<div id="nimbrung"><i>Nimbrung!</i></div>
+				<hr style="border: 1px solid #d8d8d7; margin-left: 1px; margin-right: 1px; margin-top: 2px;" /> 
+				<div id="jumlahbermutu">77</div>
+				<div id="bermutu">bermutu</div>
+				 <div style="width:1px;height:58px;background-color:#d8d8d7;float:left;margin-top:-6px;margin-left:13px;"></div>
+				<div id="jumlahbiasa">195</div>
+				<div id="biasa">biasa aja</div>
+				<div style="width:1px;height:58px;background-color:#d8d8d7;float:left;margin-top:-6px;margin-left:11px;"></div>
+				<div id="jumlahgakmutu">21</div>
+				<div id="gakmutu">gak mutu</div>
+		<div>
+</div>
+<div id="invisiblebox">
+<div id="news_box">
+<div id="arrow">
+		</div>
+
+    		<div id="tag">
+    		<div id="nametag">Evan</div>
+    		<div id="shareberita">share berita dari</div>
+    		<div id="sumberberita"><i onClick="window.location = '<%= @url %>'" style="cursor:pointer"><%= @host %></i></div>
+</div>
+    		
+    		
+    		<div id="news">
+    					<div id="judulbox">
+    										<div id="judul" align="left"><%= @title %></div>
+					     </div>
+						
+						
+    					<div id="descbox">
+    								<div id="desc" align="left">
+                                                                <%= @description %>
+    								</div>
+    					</div>
+    					
+    					
+    					<div id="photobox">
+    								<div id="photoxx" style="background:url();margin-top:20px;"><img src="<%= @image %>" width="100" /></div>'
+    					</div>
+    					
+    					<div id="commentico"></div>
+    					<div id="commentbox">
+    								<i><div id="comment" align="left">"<%= @comment %>"</div></i>
+    					
+    					</div>
+    		</div>    		
+    	
+    	
+    	
+    	</div>
+    	<div id="hash_box">
+    		<div id="hash_content">
+    			<center><p id="hashtext" align="center"><i>Ketik hashtag untuk membuat topik baru/mengisi topik yang sudah tersedia MAX 20 TEXT</i></p> 
+                        <form action="<%= profile_path %>" method="post" accept-charset="utf-8">
+    			<div id="hashing">*<input type="text" name="issue" maxlength="50" id="text_field" placeholder="Misalnya, AhokMarahLagi, BanjirJakarta, etc." autofocus="autofocus" />*</div></center>
+                        <input type="hidden" name="id" value="<%= @site.id %>">
+                        </form>
+    		</div>
+    		
+    	</div>
+    	<!-- 
+    	<div id="rate_box">
+    		<div id = "rate_content">
+    		<div id="textrate"><i>Apakah anda menyukai personal dalam berita ini?<b> Klik untuk submit!</b></i></div>
+    			<a href="#"><div id="baik"><div class="love"></div><p><i>Ya!</i></p></div></a>
+    			<a href="#"><div id="buruk"><div class="hate"></div><p><i>Tidak</i></p></div></a>
+    		</div>
+    		
+    	</div> -->
+</div>
+</div>
+</center>
+</div>    	
+
+    	 
+</body>
+</html>
+

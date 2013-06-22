@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
         user.name = auth["info"]["name"]
       end
   end
+  
+  has_many :sites
+  has_many :comments
 end

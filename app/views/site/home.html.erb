@@ -2,8 +2,8 @@
 <head>
 
 <title>Pencitraan</title>
-		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-<link rel="shortcut icon" href="img/favicon.ico" />
+		<script type="text/javascript" src="/javascript/jquery-1.8.3.js"></script>
+<link rel="shortcut icon" href="/img/favicon.ico" />
 		<link rel="stylesheet" href="/css/hal2.css" type="text/css" media="screen" />
 </head>
 
@@ -30,7 +30,7 @@
 
 <div id="box4">
 <div id="box5">
-<form action="/site/profile" method="post" accept-charset="utf-8">
+<form action="<%= share_path %>" method="post" accept-charset="utf-8">
 <div id="newsico"></div><input type='url' name='url' id='share' placeholder="Paste the link of the news over here." autofocus="autofocus" onpaste="moveToComment()"/>
 <div id="commentico"></div><input type='text' name='comment' id='comment' placeholder="Your comment." />
 <input type="submit" class="styled-button-8" value="Share" />
@@ -85,17 +85,16 @@ di Indonesia,di minggu ini.</h3>
 
 </div>
 
+<script type="text/javascript" charset="utf-8">
+    function moveToComment(){
+        setTimeout(function(){$("#comment").focus();}, 100);
+    }
+</script>
 
 
 </body>
 
 
-<script type="text/javascript" charset="utf-8">
-    $("#comment").css("width") = 1px;
-    function moveToComment(){
-        setTimeout(function(){$("#comment").focus();}, 100);
-    }
-</script>
 
 
 </html>
