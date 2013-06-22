@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-      cookies[:user_id] = nil
+      cookies.delete(:user_id)
       redirect_to root_url, :notice => "Signed out!"
     end
 end

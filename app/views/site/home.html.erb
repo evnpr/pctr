@@ -20,7 +20,10 @@
 <img id="bg" src="/img/background.jpg" />
 
 <center>
-<div id="photos"></div>
+<div id="photos" style="
+    background: url('<%= @current_user.image_url %>');
+    background-size: 133px;
+"></div>
 <div id="box">
 <h6 align="center">Hello <a href="#" id="namelink"><%= @username %></a>!</h6>
 

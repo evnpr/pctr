@@ -278,8 +278,8 @@ border-radius: 141px;
 -moz-border-radius: 141px;
 -webkit-border-radius: 141px;
 display: block; 
-background: url("../img/photos.png");
 float: left;
+background-size: 133px;
 }
 
 #box4

@@ -94,6 +94,15 @@ class SiteController < ApplicationController
         Issuesite.create(:site_id => site_id, :issue_id => i.id)
     end
     @sites = @current_user.sites.order("created_at DESC")
+    if request.GET['issue']
+        issue_id = request.GET['issue']
+        if Issue.exists?(:id => issue_id)
+            @sites_issue = Issue.find(issue_id).sites
+            @sites = @sites_issue & @sites
+        else
+            @sites = []
+        end
+    end
   end
 
 end
