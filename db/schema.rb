@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622163337) do
+ActiveRecord::Schema.define(:version => 20130623170723) do
 
   create_table "comments", :force => true do |t|
     t.text     "message"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(:version => 20130622163337) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "komentars", :force => true do |t|
+    t.integer  "issue_id"
+    t.text     "message"
+    t.integer  "bermutu",    :default => 0
+    t.integer  "biasa",      :default => 0
+    t.integer  "gakmutu",    :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "user_id"
+  end
+
   create_table "sites", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -50,9 +61,20 @@ ActiveRecord::Schema.define(:version => 20130622163337) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "image_url"
+    t.integer  "biasa",      :default => 0
+    t.integer  "bermutu",    :default => 0
+    t.integer  "gakmutu",    :default => 0
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "komentar_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "vote"
   end
 
 end

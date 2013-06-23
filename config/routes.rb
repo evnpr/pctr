@@ -1,13 +1,18 @@
 Pencitraan::Application.routes.draw do
 
 
+  post "komentar/postkomentar"
+
+  match "vote/:id/:vote" => "komentar#vote"
+
   get "site/index"
   match "home" => "site#home", :as => :home
   post "site/home"
 
   match "profile" => "site#profile", :as => :profile
   match "share" => "site#share", :via => [:get, :post], :as => :share
-
+  match "issue/:id" => "site#issue", :as => :issue
+  post "/komentar/postkomentar", :as => :komentar_submit
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 

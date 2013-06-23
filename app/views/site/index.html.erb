@@ -38,7 +38,7 @@ di Indonesia, saat ini.</h3>
 <% 
     i = 1
     @issues.each do |issue| %>
-    #<%= i %> &nbsp; <a href="#">*<%= issue.name %>*</a><br>
+    #<%= i %> &nbsp; <a href="/issue/<%= issue.id %>">*<%= issue.name %>*</a><br>
     <% 
     if i == 10
         break

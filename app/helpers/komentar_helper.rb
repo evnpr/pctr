@@ -1,0 +1,2 @@
+module KomentarHelper
+end

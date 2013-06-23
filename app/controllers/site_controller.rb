@@ -5,14 +5,14 @@ class SiteController < ApplicationController
 
   def index
     redirect_to home_path and return if cookies[:user_id]
-    @issues = Issue.all
+    @issues = Issue.find(:all, :group => "name")
   end
 
   def home
     current_user
     redirect_to "/" and return if !cookies[:user_id]
     @username = @current_user.name if @current_user
-    @issues = Issue.all
+    @issues = Issue.find(:all, :group => "name")
   end
 
   def share
@@ -107,6 +107,11 @@ class SiteController < ApplicationController
         issue = params[:issue]
         i = Issue.create(:name => issue, :user_id => @current_user.id)
         Issuesite.create(:site_id => site_id, :issue_id => i.id)
+        if Issue.exists?(:name => issue)
+            Issue.where(:name => issue).each do |ii|
+                Issuesite.create(:site_id => site_id, :issue_id => ii.id)
+            end
+        end
     end
     @sites = @current_user.sites.order("created_at DESC")
     if request.GET['issue']
@@ -119,5 +124,18 @@ class SiteController < ApplicationController
         end
     end
   end
+
+  def issue
+    current_user
+    if request.post?
+    else
+        @issue = Issue.find(params[:id])
+        @issue_same = Issue.where(:name => @issue.name).order("id asc")
+        @issue = @issue_same.first
+        @komentars = @issue.komentars.order("created_at desc")
+        @users = @issue.users.uniq
+    end
+  end
+
 
 end

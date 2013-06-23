@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  issue_id: 1
+  message: MyText
+  bermutu: 1
+  biasa: 1
+  gakmutu: 1
+
+two:
+  issue_id: 1
+  message: MyText
+  bermutu: 1
+  biasa: 1
+  gakmutu: 1

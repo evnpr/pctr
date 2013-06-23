@@ -1,0 +1,154 @@
+
+		<link rel="stylesheet" href="/css/hal6.css" type="text/css" media="screen" />
+
+
+<div id="container2"> 
+		<div id="movingtext">
+					<p><marquee behavior="scroll" direction="left" class="walktext"> Friday, February 1, 2013. Rekomendasi sharing hari ini adalah:</marquee></p>
+		</div>
+</div>
+
+<div id="con">
+<center>
+<div id="bg">
+<center>
+
+		<div id="box11">
+				<div id="sideblock">
+		  		  				<div id="jumlahnimbrung" align="left">
+		    								NIMBRUNG: <%= @users.count %>
+		  		  				</div>
+                                                                <% @users.each do |user| %>
+		  		  				<div id="listnama">
+		  		  						<div id="thumbnail2" style="background:url('<%= user.image_url %>'); background-size:45px;"></div>
+		  		  						<div id="nama2"><%= user.name %></div>
+		  		  				</div>
+                                                                <% end %>
+		  		  				
+		  		  				<div type="button" id="showmore">
+		  		  					<div id="showmoretext">
+		  		  						Show more people
+		  		  					</div>
+		  		  				</div>
+		  		  				
+		  		  </div>
+			<div id="box12">
+				<div id="box10">
+						<div id="boxjudul">
+								<div id="judul">
+								*<%= @issue.name %>*
+								</div>
+								
+								<div id="deskripsi">
+									<div id="kotakcuplik">
+													<div id="logocuplik">
+													</div>
+							
+													<div id="namacuplik">
+													<a href="#"><%= @issue.user.name %></a>
+													</div>
+									</div>	
+									
+									<div id="kotakberita">
+													<div id="logojmlberita">
+													</div>
+													
+													<div id="jmlberita">
+													<a href="#"><%= @issue.sites.count %> berita</a>
+													</div>
+									</div>
+									<div id="kotaknimbrung">
+													<div id="logonimbrung">
+													</div>
+													
+													<div id="jmlnimbrung">
+												        <%= @users.count %>	
+													</div>
+									</div>
+							</div>
+					
+						</div>
+						
+						<form action="<%= komentar_submit_path %>" method="post" accept-charset="utf-8">
+						<div id="boxnimbrung">
+								<input type='text' name='komentar' id='share' autofocus="autofocus" placeholder="Nimbrung dengan kawanmu di Seluruh Indonesia!" />
+                                                                <input type="hidden" name="issue_id" value="<%= @issue.id %>">
+						</div>
+						</form>
+				</div>
+				<a href="#" id="link"><input type="button" class="styled-button-8" value="Nimbrung!" /></a>
+						<div id="min1">
+								MIN, 20TXT.
+						</div>
+						
+			</div>
+			
+			<div id="box16" style="height: 700px; overflow:scroll">
+                                        <% @komentars.each do |komentar| %>
+					<div id="boxkomentar">
+								<div id="thumbnail" style="background:url('<%= komentar.user.image_url %>'); background-size:45px;"></div>
+								<div id="infokomentar">
+												 <div id="nama"><%= komentar.user.name %></div>
+										<br>
+												 <div id="waktu"><%= komentar.created_at %></div>
+										<br>
+							                     <div id="komentarnya" align="left" style="min-height: 120px;">
+                                                                                <%= komentar.message %>
+								                </div>
+								    
+
+								</div>
+								
+								<div id="tombol">
+										<a href="/vote/<%= komentar.id %>/bermutu" id="link">
+													<div type="button" class="styled-button-11">
+															<div id="bermutu">Bermutu</div>
+															<div id="symbol1"></div>
+															<div id="bulatputih">
+																		<center><div id="angka"><%= komentar.bermutu %></div></center>
+															
+															</div>
+															
+													</div>
+										</a>
+								<br>
+						
+						
+										<a href="/vote/<%= komentar.id %>/biasa" id="link">
+													<div type="button" class="styled-button-12">
+															<div id="bermutu">Biasa Aja</div>
+				   											<div id="symbol2"></div>
+				   											<div id="bulathijau">
+				   														<center><div id="angka"><%= komentar.biasa %></div></center>
+				   											
+				   											</div>
+													</div>
+										</a>
+								<br>
+						
+										<a href="/vote/<%= komentar.id %>/gakmutu" id="link">
+													<div type="button" class="styled-button-13">
+															<div id="bermutu">Gak Mutu</div>
+															<div id="symbol3"></div>
+															<div id="bulatputih">
+																		<center><div id="angka"><%= komentar.gakmutu %></div></center>
+															
+															</div>
+													</div>
+										</a>
+					             </div>
+				 </div>
+
+                                 <% end %>
+
+		</div>
+
+
+
+
+</center>
+
+<div id="invisiblebox">
+		</div>
+
+
