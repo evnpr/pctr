@@ -12,7 +12,7 @@ class SiteController < ApplicationController
     current_user
     redirect_to "/" and return if !cookies[:user_id]
     @username = @current_user.name if @current_user
-    @issues = Issue.find(:all, :group => "name")
+    @issues = Issue.select("id, name").group("name")
   end
 
   def share
