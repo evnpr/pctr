@@ -113,6 +113,9 @@ class SiteController < ApplicationController
             end
         end
     end
+    if request.GET["user"]
+        @current_user = User.find(request.GET["user"])
+    end
     @sites = @current_user.sites.order("created_at DESC")
     if request.GET['issue']
         issue_id = request.GET['issue']

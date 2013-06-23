@@ -20,8 +20,8 @@
 		  		  				</div>
                                                                 <% @users.each do |user| %>
 		  		  				<div id="listnama">
-		  		  						<div id="thumbnail2" style="background:url('<%= user.image_url %>'); background-size:45px;"></div>
-		  		  						<div id="nama2"><%= user.name %></div>
+		  		  						<div id="thumbnail2" onClick="window.location='/profile?user=<%= user.id %>'" style="cursor:pointer" style="background:url('<%= user.image_url %>'); background-size:45px;"></div>
+		  		  						<div id="nama2" onClick="window.location='/profile?user=<%= user.id %>'" style="cursor:pointer"><%= user.name %></div>
 		  		  				</div>
                                                                 <% end %>
 		  		  				
