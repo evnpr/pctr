@@ -5,7 +5,7 @@ class SiteController < ApplicationController
 
   def index
     redirect_to home_path and return if cookies[:user_id]
-    @issues = Issue.find(:all, :group => "name")
+    @issues = Issue.select("id, name").group("name")
   end
 
   def home
