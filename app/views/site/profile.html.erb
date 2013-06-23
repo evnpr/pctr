@@ -167,7 +167,7 @@
     		<div id="news">
     					<div id="judulbox">
     										<div id="judul" align="left">
-                                                                                    <%= @site.title %>
+                                                                                    <%= @site.title[0..50] %>
 													</div>
 					     </div>
 						
@@ -193,7 +193,7 @@
     				<div id="comhashico"></div>
     					<div id="comhashbox">
     									<div id="comhash" align="left">*<%= @site.issuesites.first.issue.name if @site.issuesites.first %>*</div>
-    <div id="cupliksign" align="right">Selamat ya, topik kamu dicuplik oleh Pencitraan!</div>
+   <!-- <div id="cupliksign" align="right">Selamat ya, topik kamu dicuplik oleh Pencitraan!</div>-->
     					</div>
 
     		</div>    		
