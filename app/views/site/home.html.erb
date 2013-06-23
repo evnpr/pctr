@@ -50,7 +50,13 @@ di Indonesia, saat ini.</h3>
 <h6 align="left" id="rank">
 <% 
     i = 1
-    @issues.each do |issue| %>
+    listissues = []
+    @issues.each do |issue|
+    if listissues.include? issue.name
+        next
+    end
+    listissues << issue.name
+%>
     #<%= i %> &nbsp; <a href="/issue/<%= issue[:id] %>">*<%= issue[:name] %>*</a><br>
     <% 
     if i == 10
