@@ -20,7 +20,7 @@
 <img id="bg" src="/img/background.jpg" />
 
 <center>
-<div id="photos" style="
+<div onclick="window.location = '<%= profile_path %>'" id="photos" style="
     background: url('<%= @current_user.image_url %>');
     background-size: 133px;
 "></div>

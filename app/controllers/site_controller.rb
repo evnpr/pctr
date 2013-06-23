@@ -53,14 +53,14 @@ class SiteController < ApplicationController
         #----- /description --------
         #----- images --------
         @images = []
+        doc.xpath("//img/@src").each do |attr|
+            @images << attr.value if attr.value.include? ".jpg"
+        end
         doc.xpath("//meta[@property='og:image']/@content").each do |attr|
             if attr.value.include? ".jp" or  attr.value.include? ".png"
                 @images = []
                 @images << attr.value 
             end
-        end
-        doc.xpath("//img/@src").each do |attr|
-            @images << attr.value if attr.value.include? ".jpg"
         end
         @image = @images.first
         #----- /images --------
