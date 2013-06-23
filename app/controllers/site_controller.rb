@@ -105,11 +105,7 @@ class SiteController < ApplicationController
     if request.post?
         site_id = params[:id]
         issue = params[:issue]
-        if !Issue.exists?(:name => issue)
-            i = Issue.create(:name => issue, :user_id => @current_user.id)
-        else
-            i = Issue.find_by_name(issue)
-        end
+        i = Issue.create(:name => issue, :user_id => @current_user.id)
         Issuesite.create(:site_id => site_id, :issue_id => i.id)
     end
     @sites = @current_user.sites.order("created_at DESC")
