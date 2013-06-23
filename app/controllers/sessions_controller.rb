@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
       auth = request.env["omniauth.auth"]
       user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
       cookies[:user_id] = user.id
-      redirect_to "/site/home", :notice => "Signed in!"
+      redirect_to home_path, :notice => "Signed in!"
     end
 
     def destroy

@@ -2,7 +2,7 @@ Pencitraan::Application.routes.draw do
 
 
   get "site/index"
-  get "site/home"
+  match "home" => "site#home", :as => :home
   post "site/home"
 
   match "profile" => "site#profile", :as => :profile

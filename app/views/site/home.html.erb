@@ -48,16 +48,17 @@ di Indonesia, saat ini.</h3>
 <hr style="border: 1px solid #d8d8d7; margin-left: 5px; margin-right: 5px; margin-top: -10px;" /> 
 
 <h6 align="left" id="rank">
-#1 &nbsp; <a href="#">*MenujuJabarSatu*</a><br>
-#2 &nbsp; <a href="#">*AhokMarah*</a><br>
-#3 &nbsp; <a href="#"> *BarcaMilan0-2*</a><br>
-#4 &nbsp;<a href="#"> *PenembakanPapua*</a><br>
-#5 &nbsp;<a href="#">  *AcengFikri*</a><br>
-#6 &nbsp;<a href="#">  *KuasaHukumRaffi*</a><br>
-#7 &nbsp;<a href="#"> *FotoMesraRaffiWanda*</a><br>
-#8 &nbsp;<a href="#">  *AherOptimis*</a><br>
-#9 &nbsp;<a href="#"> *AnasUrban*</a><br>
-#10 <a href="#">*JokowiGanjilGenap*</a><br>
+<% 
+    i = 1
+    @issues.each do |issue| %>
+    #<%= i %> &nbsp; <a href="#">*<%= issue.name %>*</a><br>
+    <% 
+    if i == 10
+        break
+    end
+    i += 1
+    end 
+%>
 </h6>
 
 <h3 align="left" id="publik2">Publik Figur<br>
@@ -83,6 +84,10 @@ di Indonesia,di minggu ini.</h3>
     function moveToComment(){
         setTimeout(function(){$("#comment").focus();}, 100);
     }
+
+    <% if flash[:notice] %>
+        alert('<%= flash[:notice] %>');
+    <% end %>
 </script>
 
 

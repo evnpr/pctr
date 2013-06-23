@@ -4,13 +4,14 @@ class SiteController < ApplicationController
   require "nokogiri"
 
   def index
-    redirect_to "/site/home" and return if cookies[:user_id]
+    redirect_to home_path and return if cookies[:user_id]
   end
 
   def home
     current_user
     redirect_to "/" and return if !cookies[:user_id]
     @username = @current_user.name if @current_user
+    @issues = Issue.all
   end
 
   def share
@@ -22,6 +23,7 @@ class SiteController < ApplicationController
         @url = url
         @host = URI.parse(url).host
 
+        begin
 
         # get the url content
         response = HTTParty.get(url)
@@ -30,13 +32,17 @@ class SiteController < ApplicationController
         
         # nokogiri in action
         doc = Nokogiri::HTML(response)
+
         #----- description ----
         @description = ""
         doc.xpath("//meta[@name='description']/@content").each do |attr|
             @description = attr.value
         end
         if @description == ""
-            @description = doc.xpath("//p").first.text
+            doc.xpath("//p").each do |attr|
+                @description = attr.text
+                break
+            end
         end
         if @description == ""
             doc.xpath("//meta[@name='description']/@content").each do |attr|
@@ -49,6 +55,9 @@ class SiteController < ApplicationController
                 @description = ""
                 @description = attr.value
             end
+        end
+        if @description == ""
+            redirect_to request.referer, :notice => "Link yang anda submit tidak bisa kami save karena bukan merupakan halaman berita yang memenuhi standard" and return
         end
         #----- /description --------
         #----- images --------
@@ -71,6 +80,11 @@ class SiteController < ApplicationController
         # /nokogiri in action
         #
         
+        # rescue
+        rescue
+           redirect_to request.referer, :notice => "link yang anda submit tidak valid" and return
+        end
+        # end rescue
         
         if !Site.exists?(:user_id => @current_user.id, :url => @url)
             @site = Site.create(:url => @url, :host => @host, :image_url => @image, :description => @description, :title => @title, :user_id => @current_user.id) 
@@ -90,7 +104,11 @@ class SiteController < ApplicationController
     if request.post?
         site_id = params[:id]
         issue = params[:issue]
-        i = Issue.create(:name => issue, :user_id => @current_user.id)
+        if !Issue.exists?(:name => issue)
+            i = Issue.create(:name => issue, :user_id => @current_user.id)
+        else
+            i = Issue.find_by_name(issue)
+        end
         Issuesite.create(:site_id => site_id, :issue_id => i.id)
     end
     @sites = @current_user.sites.order("created_at DESC")
