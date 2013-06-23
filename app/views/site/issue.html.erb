@@ -69,14 +69,20 @@
 					
 						</div>
 						
-						<form action="<%= komentar_submit_path %>" method="post" accept-charset="utf-8">
+                                                <% if @current_user != nil %>
 						<div id="boxnimbrung">
+						<form action="<%= komentar_submit_path %>" method="post" accept-charset="utf-8">
 								<input type='text' name='komentar' id='share' autofocus="autofocus" placeholder="Nimbrung dengan kawanmu di Seluruh Indonesia!" />
                                                                 <input type="hidden" name="issue_id" value="<%= @issue.id %>">
-						</div>
 						</form>
+						</div>
+                                                <% end %>
 				</div>
+                                                <% if @current_user != nil %>
 				<a href="#" id="link"><input type="button" class="styled-button-8" value="Nimbrung!" /></a>
+                                                <% else %>
+				<a href="/auth/twitter" id="link"><input type="button" class="styled-button-8" value="Sign In With Twitter" style="width: 150px;" /></a>
+                                                <% end %>
 						<div id="min1">
 								MIN, 20TXT.
 						</div>

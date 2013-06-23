@@ -1,5 +1,6 @@
 class KomentarController < ApplicationController
   def postkomentar
+        current_user
         komentar = params[:komentar]
         issue_id = params[:issue_id]
         Komentar.create(:message => komentar, :issue_id => issue_id, :user_id => @current_user.id)
