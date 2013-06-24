@@ -58,6 +58,6 @@ class KomentarController < ApplicationController
         komentar.user.save
         komentar.save
         vote.save
-        redirect_to request.referer and return
+        redirect_to request.referer+"#k#{komentar_id}" and return
   end
 end

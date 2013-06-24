@@ -71,7 +71,7 @@
 						
                                                 <% if @current_user != nil %>
 						<div id="boxnimbrung">
-						<form action="<%= komentar_submit_path %>" method="post" accept-charset="utf-8">
+						<form action="<%= komentar_submit_path %>" method="post" accept-charset="utf-8" id="myform">
 								<input type='text' name='komentar' id='share' autofocus="autofocus" placeholder="Nimbrung dengan kawanmu di Seluruh Indonesia!" />
                                                                 <input type="hidden" name="issue_id" value="<%= @issue.id %>">
 						</form>
@@ -79,7 +79,7 @@
                                                 <% end %>
 				</div>
                                                 <% if @current_user != nil %>
-				<a href="#" id="link"><input type="button" class="styled-button-8" value="Nimbrung!" /></a>
+				<a id="link"><input type="button" class="styled-button-8" value="Nimbrung!" onClick="submitform()" /></a>
                                                 <% else %>
 				<a href="/auth/twitter" id="link"><input type="button" class="styled-button-8" value="Sign In With Twitter" style="width: 150px;" /></a>
                                                 <% end %>
@@ -91,10 +91,11 @@
 			
 			<div id="box16" style="height: 700px; overflow:scroll">
                                         <% @komentars.each do |komentar| %>
-					<div id="boxkomentar">
+					<div id="boxkomentar" class="komentar<%= komentar.id%>">
 								<div id="thumbnail" style="background:url('<%= komentar.user.image_url %>'); background-size:45px;"></div>
 								<div id="infokomentar">
 												 <div id="nama"><%= komentar.user.name %></div>
+                                                                                                 <span id="k<%= komentar.id %>"></span>
 										<br>
 												 <div id="waktu"><%= komentar.created_at %></div>
 										<br>
@@ -110,7 +111,7 @@
 													<div type="button" class="styled-button-11">
 															<div id="bermutu">Bermutu</div>
 															<div id="symbol1"></div>
-															<div id="bulatputih">
+															<div id="<% if komentar.bermutu > komentar.biasa && komentar.bermutu > komentar.gakmutu %>bulathijau<% else %>bulatputih<% end %>">
 																		<center><div id="angka"><%= komentar.bermutu %></div></center>
 															
 															</div>
@@ -124,7 +125,13 @@
 													<div type="button" class="styled-button-12">
 															<div id="bermutu">Biasa Aja</div>
 				   											<div id="symbol2"></div>
-				   											<div id="bulathijau">
+				   											<div id=
+                                                                                                        <% if komentar.biasa > komentar.bermutu && komentar.biasa > komentar.gakmutu %> 
+                                                                                                                "bulathijau"
+                                                                                                        <% else %>
+                                                                                                                "bulatputih"
+                                                                                                        <% end %>
+                                                                                                                        >
 				   														<center><div id="angka"><%= komentar.biasa %></div></center>
 				   											
 				   											</div>
@@ -136,7 +143,13 @@
 													<div type="button" class="styled-button-13">
 															<div id="bermutu">Gak Mutu</div>
 															<div id="symbol3"></div>
-															<div id="bulatputih">
+															<div id=
+                                                                                                        <% if komentar.gakmutu > komentar.biasa && komentar.gakmutu > komentar.biasa %> 
+                                                                                                                "bulathijau"
+                                                                                                        <% else %>
+                                                                                                                "bulatputih"
+                                                                                                        <% end %>
+                                                                                                                        >
 																		<center><div id="angka"><%= komentar.gakmutu %></div></center>
 															
 															</div>
@@ -157,4 +170,15 @@
 <div id="invisiblebox">
 		</div>
 
+<script type="text/javascript" charset="utf-8">
+    function submitform(){
+        $("#myform").submit();
+    }
 
+    if(window.location.hash){
+        var hash = window.location.hash
+        komentar_id = hash.split("#k")[1]
+        $(".komentar"+komentar_id).css("background-color","green");
+        setTimeout(function(){$(".komentar"+komentar_id).css("background-color","");}, 500);
+    }
+</script>   
