@@ -5,14 +5,14 @@ class SiteController < ApplicationController
 
   def index
     redirect_to home_path and return if cookies[:user_id]
-    @issues = Issue.all
+    @issues = Issue.order("created_at DESC")
   end
 
   def home
     current_user
     redirect_to "/" and return if !cookies[:user_id]
     @username = @current_user.name if @current_user
-    @issues = Issue.all
+    @issues = Issue.order("created_at DESC")
   end
 
   def share
