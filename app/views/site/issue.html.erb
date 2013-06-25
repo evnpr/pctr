@@ -9,6 +9,14 @@
 		</div>
                 <div id="allnews" style="height: 500px; overflow:scroll; display:none;">
                 <% @issue.sites.each do |site| %>
+                <% 
+                if @site
+                    if @site.url == site.url
+                        next 
+                    end
+                end
+                %>
+
                 <% @site = site %>
 		<div class="newsbox">
 		<div id="arrow">
