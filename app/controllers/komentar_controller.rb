@@ -11,6 +11,9 @@ class KomentarController < ApplicationController
         current_user
         komentar_id = params[:id]
         paramvote = params[:vote]
+        if !@current_user
+            redirect_to request.referer and return
+        end
         user_id = @current_user.id
         if !Vote.exists?(:user_id => user_id, :komentar_id => komentar_id)
             vote = Vote.new(:user_id => user_id, :komentar_id => komentar_id) 
