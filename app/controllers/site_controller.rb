@@ -105,13 +105,13 @@ class SiteController < ApplicationController
     if request.post?
         site_id = params[:id]
         issue = params[:issue]
-        i = Issue.create(:name => issue, :user_id => @current_user.id)
-        Issuesite.create(:site_id => site_id, :issue_id => i.id)
         if Issue.exists?(:name => issue)
             Issue.where(:name => issue).each do |ii|
                 Issuesite.create(:site_id => site_id, :issue_id => ii.id)
             end
         end
+        i = Issue.create(:name => issue, :user_id => @current_user.id)
+        Issuesite.create(:site_id => site_id, :issue_id => i.id)
     end
     if request.GET["user"]
         @current_user = User.find(request.GET["user"])
