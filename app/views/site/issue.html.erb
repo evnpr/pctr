@@ -1,4 +1,5 @@
 
+		<link rel="stylesheet" href="/css/hal4.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/css/hal6.css" type="text/css" media="screen" />
 
 
@@ -6,6 +7,58 @@
 		<div id="movingtext">
 					<p><marquee behavior="scroll" direction="left" class="walktext"> Friday, February 1, 2013. Rekomendasi sharing hari ini adalah:</marquee></p>
 		</div>
+                <div id="allnews" style="height: 500px; overflow:scroll; display:none;">
+                <% @issue.sites.each do |site| %>
+                <% @site = site %>
+		<div class="newsbox">
+		<div id="arrow">
+		</div>
+		
+		<div id="tag">
+    		<div id="shareberita">share berita dari</div>
+    		<div id="sumberberita"><i onClick="window.location='<%= @site.url %>'" style="cursor:pointer"><%= @site.host %></i></div>
+		</div>
+    	
+    		<div id="news">
+    					<div id="judulbox">
+    										<div id="judul" align="left">
+                                                                                    <%= @site.title[0..90] %>
+													</div>
+					     </div>
+						
+						
+    					<div id="descbox">
+    								<div id="desc" align="left">
+                                                                    <%=  @site.description %>
+    								</div>
+    					</div>
+    					
+    					
+    					<div id="photobox">
+    								<div id="photoxx" style="background:url()"><img src="<%= @site.image_url %>" width="100" /></div>
+    					</div>
+    					<hr style="border: 1px solid #d8d8d7; margin-top: 145px; position:relative;" /> 
+    					<div id="commentico"></div>
+    					<div id="commentbox">
+    								<i><div id="comment" align="left">"<%= @site.comments.last.message if @site.comments.last  %>"</div></i>
+    					
+    					</div>
+    					<hr style="border: 1px solid #d8d8d7; margin-top: -2px; position:relative" /> 
+    					
+    				<div id="comhashico"></div>
+    					<div id="comhashbox">
+    									<div id="comhash" align="left">*<%= @site.issuesites.first.issue.name if @site.issuesites.first %>*</div>
+   <!-- <div id="cupliksign" align="right">Selamat ya, topik kamu dicuplik oleh Pencitraan!</div>-->
+    					</div>
+
+    		</div>    		
+    	
+
+		</div>
+
+                <% end %>
+                    
+                </div>
 </div>
 
 <div id="con">
@@ -54,7 +107,7 @@
 													</div>
 													
 													<div id="jmlberita">
-													<a href="#"><%= @issue.sites.count %> berita</a>
+													<a><%= @issue.sites.count %> berita</a>
 													</div>
 									</div>
 									<div id="kotaknimbrung">
@@ -181,4 +234,8 @@
         $(".komentar"+komentar_id).css("background-color","green");
         setTimeout(function(){$(".komentar"+komentar_id).css("background-color","");}, 500);
     }
+
+     $("#jmlberita").click(function(){
+        $("#allnews").slideToggle();
+     });
 </script>   
